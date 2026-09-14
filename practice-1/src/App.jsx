@@ -5,7 +5,7 @@ function App() {
     return (
         <>
             <Header/>
-            <p> Hello My name is Huy </p>
+            <p> Hello My name is Alex </p>
             <Footer/>
         </>
     )
