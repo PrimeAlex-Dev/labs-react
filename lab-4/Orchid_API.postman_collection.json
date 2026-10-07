@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+		"name": "SBA301 Slot18 Orchid API",
+		"description": "Collection kiểm thử CRUD Orchid REST API theo chuẩn Lab 04",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "T01 - GET All Orchids",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/orchids",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "orchids"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "T02 - Search Orchids by Name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/orchids?name=cat",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "orchids"],
+					"query": [
+						{
+							"key": "name",
+							"value": "cat"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "T03 - GET Orchid By ID (Existing)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/orchids/1",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "orchids", "1"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "T04 - GET Orchid By ID (Missing 404)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/orchids/999999",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "orchids", "999999"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "T05 - POST Create Orchid (Valid Category)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"orchidName\": \"Cattleya Queen\",\n  \"isNatural\": true,\n  \"orchidDescription\": \"Demo orchid for Slot 18\",\n  \"orchidCategory\": {\n    \"categoryId\": 1\n  },\n  \"isAttractive\": true,\n  \"orchidURL\": \"https://example.com/orchid.jpg\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/orchids",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "orchids"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "T06 - POST Create Orchid (Missing Category 400)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"orchidName\": \"Invalid Orchid\",\n  \"isNatural\": true,\n  \"orchidDescription\": \"Test invalid category\",\n  \"orchidCategory\": {\n    \"categoryId\": 999\n  },\n  \"isAttractive\": true,\n  \"orchidURL\": \"https://example.com/invalid.jpg\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/orchids",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "orchids"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "T07 - PUT Update Orchid (Existing ID)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"orchidName\": \"Cattleya Queen Updated\",\n  \"isNatural\": false,\n  \"orchidDescription\": \"Updated by PUT\",\n  \"orchidCategory\": {\n    \"categoryId\": 2\n  },\n  \"isAttractive\": true,\n  \"orchidURL\": \"https://example.com/orchid-updated.jpg\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/orchids/1",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "orchids", "1"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "T08 - PUT Update Orchid (Missing ID 404)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"orchidName\": \"Nonexistent Orchid\",\n  \"isNatural\": false,\n  \"orchidDescription\": \"Testing missing update\",\n  \"orchidCategory\": {\n    \"categoryId\": 1\n  },\n  \"isAttractive\": true,\n  \"orchidURL\": \"https://example.com/none.jpg\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/orchids/999999",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "orchids", "999999"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "T09 - DELETE Orchid (Existing ID)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/orchids/1",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "orchids", "1"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "T10 - DELETE Orchid (Missing ID 404)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/orchids/999999",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "orchids", "999999"]
+				}
+			},
+			"response": []
+		}
+	]
+}
