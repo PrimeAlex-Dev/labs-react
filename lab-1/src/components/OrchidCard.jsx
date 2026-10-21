@@ -63,7 +63,7 @@ function OrchidCard({ orchid }) {
             </div>
             <div className="col-md-6">
               <p className="mb-2"><strong>Color:</strong> {orchid.color}</p>
-              <p className="mb-2"><strong>Rating:</strong> ⭐ {orchid.rating} / 5.0</p>
+              <p className="mb-2"><strong>Rating:</strong> {orchid.rating} / 5.0</p>
             </div>
           </div>
           <hr />
